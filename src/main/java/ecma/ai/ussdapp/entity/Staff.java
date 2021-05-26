@@ -9,10 +9,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.annotation.security.DenyAll;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.util.Collection;
 import java.util.Set;
 import java.util.UUID;
@@ -27,7 +24,7 @@ public class Staff extends AbsEntity implements UserDetails {
     @ManyToOne
     private Filial filial;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;  //ROLE MANAGER
 
     @Column(unique = true)

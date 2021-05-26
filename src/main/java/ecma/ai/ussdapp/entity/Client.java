@@ -28,6 +28,7 @@ public class Client extends AbsEntity {
     @ManyToMany
     private Set<Role> roles;
 
+    private String password;
 
     //client bir nechta simkartaga ega bo'lasz?
     @OneToMany(mappedBy = "client", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
