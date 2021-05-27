@@ -33,61 +33,61 @@ public class ClientService {
     @Autowired
     SimcardRepository simcardRepository;
 
-//    public ApiResponse buySimcard(ClientDto clientDto) {
-//
-//        boolean existsByPassportNumber = clientRepository.existsByPassportNumber(clientDto.getPassportNumber());
-//
-//        Client client = new Client();
-//        if (existsByPassportNumber) {
-//
-//            Optional<Client> byPassportNumber = clientRepository.findByPassportNumber(clientDto.getPassportNumber());
-//
-//            client = byPassportNumber.get();
-//
-//        } else {
-//            //mijoz 1-marta
-//
-//            client.setPassportNumber(clientDto.getPassportNumber());
-//            if (clientDto.getClientTypeOrdinal() == 1) {
-//                client.setClientType(ClientType.JISMONIY);
-//            } else if (clientDto.getClientTypeOrdinal() == 2) {
-//                client.setClientType(ClientType.YURIDIK);
-//            } else {
-//                return new ApiResponse("Client type notogri keldi!", false);
-//            }
-//
-//            client.setFullName(clientDto.getFullName());
-//
-//            Role byRoleName = roleRepository.findByRoleName(RoleName.ROLE_CLIENT);
-//            client.setRoles(Collections.singleton(byRoleName));
-//
-//        }
-//
-//        Optional<Tariff> optionalTariff = tariffRepository.findById(clientDto.getBuyingSimCardDto().getTariffId());
-//
-//        if (!optionalTariff.isPresent()) return new ApiResponse("Tariff not found!", false);
-//        Tariff tariff = optionalTariff.get();
-//
-//        Optional<SimCard> optionalSimCard = simcardRepository.findByCodeAndNumber(clientDto.getBuyingSimCardDto().getCode(), clientDto.getBuyingSimCardDto().getNumber());
-//
-//        if (!optionalSimCard.isPresent()) return new ApiResponse("Simcard not found!", false);
-//        SimCard simCard = optionalSimCard.get();
-//
-//        //sim karta aktiv bo'lmasligi kk
-//        if (simCard.isActive()) return new ApiResponse("Simcard already bought", false);
-//
-//        simCard.setActive(true);
-//        simCard.setTariff(tariff);
-//        simCard.setClient(client);
-//        simCard.setBalance(clientDto.getBuyingSimCardDto().getSum());
-//
-//
-//        simcardRepository.save(simCard);
-//        //mana shu joyda simcardga min sms mb qancha borligini field
+    public ApiResponse buySimcard(ClientDto clientDto) {
+
+        boolean existsByPassportNumber = clientRepository.existsByPassportNumber(clientDto.getPassportNumber());
+
+        Client client = new Client();
+        if (existsByPassportNumber) {
+
+            Optional<Client> byPassportNumber = clientRepository.findByPassportNumber(clientDto.getPassportNumber());
+
+            client = byPassportNumber.get();
+
+        } else {
+            //mijoz 1-marta
+
+            client.setPassportNumber(clientDto.getPassportNumber());
+            if (clientDto.getClientTypeOrdinal() == 1) {
+                client.setClientType(ClientType.JISMONIY);
+            } else if (clientDto.getClientTypeOrdinal() == 2) {
+                client.setClientType(ClientType.YURIDIK);
+            } else {
+                return new ApiResponse("Client type notogri keldi!", false);
+            }
+
+            client.setFullName(clientDto.getFullName());
+
+            Role byRoleName = roleRepository.findByRoleName(RoleName.ROLE_CLIENT);
+            client.setRoles(Collections.singleton(byRoleName));
+
+        }
+
+        Optional<Tariff> optionalTariff = tariffRepository.findById(clientDto.getBuyingSimCardDto().getTariffId());
+
+        if (!optionalTariff.isPresent()) return new ApiResponse("Tariff not found!", false);
+        Tariff tariff = optionalTariff.get();
+
+        Optional<SimCard> optionalSimCard = simcardRepository.findByCodeAndNumber(clientDto.getBuyingSimCardDto().getCode(), clientDto.getBuyingSimCardDto().getNumber());
+
+        if (!optionalSimCard.isPresent()) return new ApiResponse("Simcard not found!", false);
+        SimCard simCard = optionalSimCard.get();
+
+        //sim karta aktiv bo'lmasligi kk
+        if (simCard.isActive()) return new ApiResponse("Simcard already bought", false);
+
+        simCard.setActive(true);
+        simCard.setTariff(tariff);
+        simCard.setClient(client);
+        simCard.setBalance(clientDto.getBuyingSimCardDto().getSum());
+
+
+        simcardRepository.save(simCard);
+        //mana shu joyda simcardga min sms mb qancha borligini field
+        clientRepository.save(client);
 //        client.setSimCardList(Collections.singletonList(simCard));
 //        clientRepository.save(client);
-//
-//        return new ApiResponse("simcard rasmiylashdi!", true);
-//
-//    }
+        return new ApiResponse("simcard rasmiylashdi!", true);
+
+    }
 }

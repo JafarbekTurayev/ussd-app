@@ -4,6 +4,7 @@ import ecma.ai.ussdapp.entity.enums.ServiceType;
 import ecma.ai.ussdapp.entity.template.AbsEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -14,6 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@EqualsAndHashCode(callSuper = true)
 public class EntertainingService extends AbsEntity {
 
     private String name;
