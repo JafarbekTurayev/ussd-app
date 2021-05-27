@@ -1,21 +1,16 @@
 package ecma.ai.ussdapp.component;
 
-import ecma.ai.ussdapp.entity.Client;
-import ecma.ai.ussdapp.entity.Role;
-import ecma.ai.ussdapp.entity.Staff;
-import ecma.ai.ussdapp.entity.UssdCode;
+import ecma.ai.ussdapp.entity.*;
 import ecma.ai.ussdapp.entity.enums.ClientType;
 import ecma.ai.ussdapp.entity.enums.RoleName;
-import ecma.ai.ussdapp.repository.ClientRepository;
-import ecma.ai.ussdapp.repository.RoleRepository;
-import ecma.ai.ussdapp.repository.StaffRepository;
-import ecma.ai.ussdapp.repository.USSDRepository;
+import ecma.ai.ussdapp.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import java.sql.Timestamp;
 import java.util.*;
 
 @Component
@@ -38,6 +33,12 @@ public class DataLoader implements CommandLineRunner {
 
     @Autowired
     USSDRepository ussdRepository;
+
+    @Autowired
+    TariffRepository tariffRepository;
+
+    @Autowired
+    SimcardRepository simcardRepository;
 
     @Override
     public void run(String... args) throws Exception {
@@ -75,6 +76,31 @@ public class DataLoader implements CommandLineRunner {
 
             ussdRepository.saveAll(ussdCodes);
 
+            Tariff tariff = new Tariff();
+            tariff.setId(UUID.fromString("19722989-39d2-425c-b52d-a32b606a7703"));
+            tariff.setSwitchPrice(2500);
+            tariff.setPrice(70000);
+            tariff.setName("Bir oy");
+            tariff.setExpireDate(new Timestamp(System.currentTimeMillis() + 30L * 1000 * 60 * 60 * 24));
+            tariff.setMb(1000);
+            tariff.setMin(1000);
+            tariff.setSms(1000);
+
+            tariff.setMbCost(25);
+            tariff.setMinCost(25);
+            tariff.setSmsCost(25);
+
+            tariffRepository.save(tariff);
+
+            SimCard simCard = new SimCard();
+            simCard.setBalance(0);
+            simCard.setActive(false);
+            simCard.setCode("91");
+            simCard.setSimCardNumber("2455897");
+            simCard.setNumber("2455897");
+            simCard.setName("Beeline");
+
+            simcardRepository.save(simCard);
         }
     }
 }

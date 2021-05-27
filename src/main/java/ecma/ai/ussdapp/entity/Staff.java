@@ -1,5 +1,6 @@
 package ecma.ai.ussdapp.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import ecma.ai.ussdapp.entity.template.AbsEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,6 +23,8 @@ import java.util.UUID;
 public class Staff extends AbsEntity implements UserDetails {
 
     @ManyToOne
+    @JoinColumn(name = "staff")
+//    @JsonBackReference
     private Filial filial;
 
     @ManyToMany(fetch = FetchType.EAGER)

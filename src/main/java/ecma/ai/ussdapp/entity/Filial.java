@@ -1,5 +1,8 @@
 package ecma.ai.ussdapp.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import ecma.ai.ussdapp.entity.template.AbsEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,8 +22,11 @@ public class Filial extends AbsEntity {
 
     private String name;
 
+
     //user
-    @OneToOne
+    @JsonIgnoreProperties
+    @OneToOne(fetch = FetchType.LAZY)
+    //    @JsonIgnore
     private Staff director;
 
     //staffs xodimlar ro'yxati

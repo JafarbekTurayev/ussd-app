@@ -13,4 +13,5 @@ public interface SimcardRepository extends JpaRepository<SimCard, UUID> {
 
     Optional<SimCard> findBySimCardNumber(String simcardNumber);
 
+
 }

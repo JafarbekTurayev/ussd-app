@@ -18,13 +18,12 @@ public class FilialController {
     @Autowired
     FilialService filialService;
 
-
     //filial qo'shish
-    @PreAuthorize(value = "hasAnyRole('ROLE_MANAGER')")
-    @PostMapping
-    public HttpEntity<?> addFilial(@RequestBody FilialDto filialDto) {
-        ApiResponse response = filialService.addFilial(filialDto);
-
-        return ResponseEntity.status(response.isSuccess() ? 200 : 409).body(response);
-    }
+//    @PreAuthorize(value = "hasAnyRole('ROLE_MANAGER')")
+//    @PostMapping
+//    public HttpEntity<?> addFilial(@RequestBody FilialDto filialDto) {
+//        ApiResponse response = filialService.addFilial(filialDto);
+//
+//        return ResponseEntity.status(response.isSuccess() ? 200 : 409).body(response);
+//    }
 }

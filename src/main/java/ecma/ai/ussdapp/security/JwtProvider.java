@@ -11,7 +11,7 @@ import java.util.Set;
 @Component
 public class JwtProvider {
 
-    static long expireTime = 1000 * 3600;// 1soat
+    static long expireTime = 1000 * 86400;// 1soat
     static String secretKey = "BuniSenBilolmaysan";
 
 

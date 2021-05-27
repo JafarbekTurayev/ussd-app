@@ -1,5 +1,8 @@
 package ecma.ai.ussdapp.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import ecma.ai.ussdapp.entity.enums.ClientType;
 import ecma.ai.ussdapp.entity.template.AbsEntity;
 import lombok.AllArgsConstructor;
@@ -31,7 +34,9 @@ public class Client extends AbsEntity {
     private String password;
 
     //client bir nechta simkartaga ega bo'lasz?
-    @OneToMany(mappedBy = "client", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "client", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+//    @JsonIgnore
+//    @JsonManagedReference
     private List<SimCard> simCardList;
 
 
