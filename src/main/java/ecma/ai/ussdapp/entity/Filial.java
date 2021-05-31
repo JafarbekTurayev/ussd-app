@@ -22,7 +22,6 @@ public class Filial extends AbsEntity {
 
     private String name;
 
-
     //user
     @JsonIgnoreProperties
     @OneToOne(fetch = FetchType.LAZY)
