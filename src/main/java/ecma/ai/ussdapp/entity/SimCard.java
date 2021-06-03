@@ -1,6 +1,5 @@
 package ecma.ai.ussdapp.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import ecma.ai.ussdapp.entity.template.AbsEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,7 +7,6 @@ import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -22,7 +20,7 @@ public class SimCard extends AbsEntity implements UserDetails {
 
     private String name;
 
-    private String code; //90 91
+    private String code; //+99890 +99891
 
     private String number; //7 xonali soni
 

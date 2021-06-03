@@ -42,10 +42,6 @@ public class PaymentService {
         payment.setSimCard(simCard);
         simcardRepository.save(simCard);
         paymentRepository.save(payment);
-
-
-        
-
         return new ApiResponse("to'lov qabbul qilindi", true, payment);
     }
 
@@ -55,15 +51,9 @@ public class PaymentService {
 
         if (!optionalStaff.isPresent()) return new ApiResponse("User is not found", false);
         Staff currentStaff = optionalStaff.get();
-
         if (currentStaff.getRoles().contains(new Role(4, RoleName.ROLE_CLIENT))) {
-
             return new ApiResponse("mana to'lovlaringiz",true,
                     paymentRepository.findAllBySimCard_Client_FullName(staff.getFullName()));
-
-
-
-
         }
         else{
             return new ApiResponse("mana to'lovlaringiz",true,

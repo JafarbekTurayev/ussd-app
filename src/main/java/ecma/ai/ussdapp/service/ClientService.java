@@ -83,10 +83,7 @@ public class ClientService {
 
 
         simcardRepository.save(simCard);
-        //mana shu joyda simcardga min sms mb qancha borligini field
         clientRepository.save(client);
-//        client.setSimCardList(Collections.singletonList(simCard));
-//        clientRepository.save(client);
         return new ApiResponse("simcard rasmiylashdi!", true);
 
     }
